@@ -13,13 +13,13 @@
 # limitations under the License.
 
 ---
-- hosts: {{ instance_name }} 
-  gather_facts: False 
-  connection: ssh 
-  user: ubuntu 
-  sudo: yes 
+- hosts: {{ instance_name }}
+  gather_facts: False
+  connection: ssh
+  user: ubuntu
+  sudo: yes
   vars:
   roles:
     - pre-requirement
     - mme-configure
- 
+
