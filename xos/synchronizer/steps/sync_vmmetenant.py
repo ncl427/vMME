@@ -15,7 +15,6 @@
 import os
 import sys
 from django.db.models import Q, F
-#from services.vmme.models import VMMEService, VMMETenant
 from synchronizers.new_base.modelaccessor import *
 from synchronizers.new_base.SyncInstanceUsingAnsible import SyncInstanceUsingAnsible
 
@@ -23,15 +22,8 @@ parentdir = os.path.join(os.path.dirname(__file__), "..")
 sys.path.insert(0, parentdir)
 
 class SyncVMMETenant(SyncInstanceUsingAnsible):
-
-    provides = [VMMETenant]
-
     observes = VMMETenant
-
-    requested_interval = 0
-
     template_name = "vmmetenant_playbook.yaml"
-
     service_key_name = "/opt/xos/configurations/mcord/mcord_private_key"
 
     def __init__(self, *args, **kwargs):
