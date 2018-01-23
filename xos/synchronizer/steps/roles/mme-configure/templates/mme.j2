@@ -134,7 +134,7 @@ MME :
         # SECURITY MODE COMPLETE received, SECURITY MODE REJECT received
         # ON THE 1st, 2nd, 3rd, 4th EXPIRY: Retransmission of the same message type
         T3460                                 =  6;                             # in seconds (default is 6s)
-        
+
         # T3470 start: IDENTITY REQUEST sent
         # T3470 stop: IDENTITY RESPONSE received
         # ON THE 1st, 2nd, 3rd, 4th EXPIRY: Retransmission of IDENTITY REQUEST
@@ -148,16 +148,16 @@ MME :
         #              ACTIVATE DEDICATED EPS BEARER CONTEXT REJECT received
         # ON THE 1st, 2nd, 3rd, 4th EXPIRY: Retransmission of the same message
         T3485                                 =  8;                             # in seconds (default is 8s)
-        
+
         T3486                                 =  8;                             # UNUSED in seconds (default is 8s)
-        
+
         # T3489 start: ESM INFORMATION REQUEST sent
         # T3489 stop:  ESM INFORMATION RESPONSE received
         # Retransmission of ESM INFORMATION REQUEST on 1st and 2nd expiry only
         T3489                                 =  4;                             # in seconds (default is 4s)
-        
+
         T3495                                 =  8;                             # UNUSED in seconds (default is 8s)
-        
+
         # NON STANDARD FEATURES
         # Reject Tracking Area Update
         FORCE_REJECT_TAU                      = "yes";                          # Leave it at "yes" (TAU TODO)
@@ -165,19 +165,19 @@ MME :
         FORCE_REJECT_SR                       = "yes";                          # Leave it at "yes" (SR TODO)
         DISABLE_ESM_INFORMATION_PROCEDURE     = "yes";                          #
     };
-    
-    NETWORK_INTERFACES : 
+
+    NETWORK_INTERFACES :
     {
         # MME binded interface for S1-C or S1-MME  communication (S1AP), can be ethernet interface, virtual ethernet interface, we don't advise wireless interfaces
-        MME_INTERFACE_NAME_FOR_S1_MME         = "{{MME_INTERFACE}}";                        # YOUR NETWORK CONFIG HERE
-        MME_IPV4_ADDRESS_FOR_S1_MME           = "{{MME_PRIVATE_IP}}/24";                 # YOUR NETWORK CONFIG HERE
+        MME_INTERFACE_NAME_FOR_S1_MME         = "{{ MME_S1MME_INTERFACE }}";                        # YOUR NETWORK CONFIG HERE
+        MME_IPV4_ADDRESS_FOR_S1_MME           = "{{ MME_S1MME_IP }}/24";                 # YOUR NETWORK CONFIG HERE
 
         # MME binded interface for S11 communication (GTPV2-C)
-        MME_INTERFACE_NAME_FOR_S11_MME        = "{{MME_INTERFACE}}";                           # YOUR NETWORK CONFIG HERE
-        MME_IPV4_ADDRESS_FOR_S11_MME          = "{{MME_PRIVATE_IP}}/24";                 # YOUR NETWORK CONFIG HERE
+        MME_INTERFACE_NAME_FOR_S11_MME        = "{{ MME_S11_INTERFACE }}";                           # YOUR NETWORK CONFIG HERE
+        MME_IPV4_ADDRESS_FOR_S11_MME          = "{{ MME_S11_IP }}/24";                 # YOUR NETWORK CONFIG HERE
         MME_PORT_FOR_S11_MME                  = 2123;                           # YOUR NETWORK CONFIG HERE
     };
-    
+
     LOGGING :
     {
         # OUTPUT choice in { "CONSOLE", "SYSLOG", `path to file`", "`IPv4@`:`TCP port num`"}
@@ -215,9 +215,9 @@ MME :
         # for S1AP protocol
         ASN1_VERBOSITY    = "none";
     };
-    
+
     S-GW_LIST_SELECTION = (
-         {ID="tac-lb{{'%02d' % TAC}}.tac-hb00.tac.epc.mnc{{'%03d' % MNC}}.mcc{{'%03d' % MCC}}.3gppnetwork.org" ; SGW_IPV4_ADDRESS_FOR_S11="{{SPGW_PRIVATE_IP}}/24";}
+         {ID="tac-lb{{'%02d' % TAC}}.tac-hb00.tac.epc.mnc{{'%03d' % MNC}}.mcc{{'%03d' % MCC}}.3gppnetwork.org" ; SGW_IPV4_ADDRESS_FOR_S11="{{ SPGW_S11_IP }}/24";}
     );
 
 };

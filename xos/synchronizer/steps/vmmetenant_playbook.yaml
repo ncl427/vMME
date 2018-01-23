@@ -19,6 +19,10 @@
   user: ubuntu
   sudo: yes
   vars:
+    - MME_S11_IP: {{ mme_s11_ip }}
+    - MME_S1MME_IP: {{ mme_s1mme_ip }}
+    - SPGW_S11_ip: {{ spgw_s11_ip }}
+    - HSS_S6A_IP: {{ hss_s6a_ip }}
   roles:
     - pre-requirement
     - mme-configure
