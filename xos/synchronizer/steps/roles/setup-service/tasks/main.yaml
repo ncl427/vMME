@@ -1,0 +1,15 @@
+- name: check if there is already a systemd definition of OAI-MME
+  stat:
+    path: /etc/systemd/system/oaimme.service
+  register: service_stat
+
+- name: stop running systemd service of OAI-MME if exists
+  systemd:
+    name: "oaimme.service"
+    state: stopped
+  when: service_stat.stat.exists
+
+- name: setup systemd service definition of OAI-MME
+  copy:
+    src: "oaimme.service"
+    dest: "/etc/systemd/system/"

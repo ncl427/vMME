@@ -26,4 +26,5 @@
     - HSS_S6A_IP: {{ hss_s6a_ip }}
   roles:
     - mme-configure
+    - setup-service
 
