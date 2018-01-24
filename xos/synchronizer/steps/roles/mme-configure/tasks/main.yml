@@ -27,3 +27,12 @@
 - name: set host name of mme
   hostname:
     name: "{{MME_ALIAS}}"
+
+- name: set hosts
+  lineinfile:
+    name: /etc/hosts
+    line: "{{item.line}}"
+    regexp: "{{item.regex}}"
+  with_items:
+    - { regex: "{{ HSS_HOST }}", line: '{{ HSS_S6A_IP }} {{ HSS_HOST }} {{ HSS_ALIAS }}' }
+    - { regex: "{{ MME_HOST }}", line: '{{ MME_S6A_IP }} {{ MME_HOST }} {{ MME_ALIAS }}'}

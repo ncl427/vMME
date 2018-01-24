@@ -34,6 +34,7 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
 
         fields['mme_s11_ip'] = self.get_my_ip_address(o, 's11_network', 's11_mme_ip')
         fields['mme_s1mme_ip'] = self.get_my_ip_address(o, 's1mme_network', 's1mme_mme_ip')
+        fields['mme_s6a_ip'] = self.get_my_ip_address(o, 's6a_network', 's6a_mme_ip')
         fields['hss_s6a_ip'] = self.get_ip_address_from_peer_service_instance('s6a_network', 'VHSSTenant', o, 's6a_hss_ip')
         fields['spgw_s11_ip']   = self.get_ip_address_from_peer_service_instance('s11_network', 'OAISPGWServiceInstance', o, 's11_spgw_ip')
 
