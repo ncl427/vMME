@@ -13,3 +13,8 @@
   copy:
     src: "oaimme.service"
     dest: "/etc/systemd/system/"
+
+- name: Start service
+  systemd:
+    name: "oaimme.service"
+    state: started
