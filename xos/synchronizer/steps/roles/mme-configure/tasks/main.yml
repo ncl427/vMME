@@ -1,21 +1,21 @@
-- name: create oai config directory
+- name: Create oai config directory
   file:
     path: /usr/local/etc/oai/freeDiameter
     state: directory
 
-- name: get mme s11 interface
+- name: Get mme s11 interface
   shell: ifconfig | grep -B1 "inet addr:{{ MME_S11_IP }}" | awk '$1!="inet" && $1!="--" {print $1}'
   args:
     executable: /bin/bash
   register: MME_S11_INTERFACE
 
-- name: get mme s1mme interface
+- name: Get mme s1mme interface
   shell: ifconfig | grep -B1 "inet addr:{{ MME_S1MME_IP }}" | awk '$1!="inet" && $1!="--" {print $1}'
   args:
     executable: /bin/bash
   register: MME_S1MME_INTERFACE
 
-- name: overwrite oai epc configs
+- name: Overwrite oai epc configs
   template:
     src: "{{item.src}}"
     dest: "{{item.dest}}"
@@ -24,11 +24,11 @@
     - { src: 'mme_fd.j2', dest: '/usr/local/etc/oai/freeDiameter/mme_fd.conf' }
     - { src: 'mme.j2', dest: '/usr/local/etc/oai/mme.conf' }
 
-- name: set host name of mme
+- name: Set host name of mme
   hostname:
     name: "{{MME_ALIAS}}"
 
-- name: set hosts
+- name: Set hosts
   lineinfile:
     name: /etc/hosts
     line: "{{item.line}}"
