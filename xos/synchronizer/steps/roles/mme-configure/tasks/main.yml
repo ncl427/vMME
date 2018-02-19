@@ -11,7 +11,3 @@
     - { src: 'acl.j2', dest: '/usr/local/etc/oai/freeDiameter/acl.conf' }
     - { src: 'mme_fd.j2', dest: '/usr/local/etc/oai/freeDiameter/mme_fd.conf' }
     - { src: 'mme.j2', dest: '/usr/local/etc/oai/mme.conf' }
-
-- name: set host name of mme
-  hostname:
-    name: "{{MME_ALIAS}}"
