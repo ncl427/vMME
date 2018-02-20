@@ -3,6 +3,14 @@
     path: /usr/local/etc/oai/freeDiameter
     state: directory
 
+- name: get service route interface name
+  shell: ip route | grep 10.0.7.0/24 | grep -oP '(?<=dev\s)\w+'
+  register: SERVICE_INTERFACE
+
+- name: set oai component interfaces
+  set_fact:
+    MME_INTERFACE: "{{SERVICE_INTERFACE.stdout}}"
+
 - name: overwrite oai epc configs
   template:
     src: "{{item.src}}"
