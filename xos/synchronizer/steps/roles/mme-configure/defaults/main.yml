@@ -1,6 +1,8 @@
 REALM: openair4G.eur
 
+MME_HOST: nano.openair4G.eur
 HSS_HOST: hss.openair4G.eur
+MME_ALIAS: nano
 HSS_ALIAS: hss
 
 MME_HOST: nano.openair4G.eur

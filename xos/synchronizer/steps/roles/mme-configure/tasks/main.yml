@@ -19,3 +19,12 @@
     - { src: 'acl.j2', dest: '/usr/local/etc/oai/freeDiameter/acl.conf' }
     - { src: 'mme_fd.j2', dest: '/usr/local/etc/oai/freeDiameter/mme_fd.conf' }
     - { src: 'mme.j2', dest: '/usr/local/etc/oai/mme.conf' }
+
+- name: set hosts
+  lineinfile:
+    name: /etc/hosts
+    line: "{{item.line}}"
+    regexp: "{{item.regex}}"
+  with_items:
+    - { regex: "{{HSS_HOST}}", line: '{{HSS_PRIVATE_IP}} {{HSS_HOST}} {{HSS_ALIAS}}' }
+    - { regex: "{{MME_HOST}}", line: '{{MME_PRIVATE_IP}} {{MME_HOST}} {{MME_ALIAS}}'}
