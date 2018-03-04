@@ -19,7 +19,7 @@
   user: ubuntu 
   sudo: yes 
   vars:
-    - MME_PRIVATE_IP: "10.0.6.1"
+    - MME_PRIVATE_IP: "{{ MME_PRIVATE_IP }}"
     - HSS_PRIVATE_IP: "10.0.7.1"
     - SPGW_PRIVATE_IP: "10.0.8.1"
   roles:

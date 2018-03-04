@@ -37,4 +37,33 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
     def __init__(self, *args, **kwargs):
         super(SyncVMMETenant, self).__init__(*args, **kwargs)
 
+    def get_network_id(self, network_name):
+        network = Network.objects.filter(name=network_name).first()
 
+        return network.id
+
+    def get_instance_object(self, instance_id):
+        instance = Instance.objects.filter(id=instance_id).first()
+
+        return instance
+
+    def get_information(self, o):
+        fields = {}
+
+        collect_network = [
+           {'name': 'MME_PRIVATE_IP', 'net_name': 'vmme_network'}
+        ]
+
+        instance = self.get_instance_object(o.instance_id)
+
+        for data in collect_network:
+            network_id = self.get_network_id(data['net_name'])
+            port = filter(lambda x: x.network_id == network_id, instance.ports.all())[0]
+            fields[data['name']] = port.ip
+
+        return fields
+
+    def get_extra_attributes(self, o):
+        fields = self.get_information(o)
+
+        return fields
