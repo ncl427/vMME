@@ -47,6 +47,21 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
 
         return instance
 
+    def get_spgwc_list(self):
+        vspgwc_list = VSPGWCTenant.objects.all()
+        vspgwc_idlist = map(lambda x: x.instance_id, vspgwc_list)
+
+        spgwc = filter(lambda x: x.id in vspgwc_idlist, Instance.objects.all())
+        spgwc_network = self.get_network_id('vspgwc_network')
+
+        spgwc_iplist = []
+
+        for obj in spgwc:
+            port = filter(lambda x: x.network_id == spgwc_network, obj.ports.all())[0]
+            spgwc_iplist.append(port.ip)
+
+        return spgwc_iplist
+
     def get_information(self, o):
         fields = {}
 
@@ -60,6 +75,8 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
             network_id = self.get_network_id(data['net_name'])
             port = filter(lambda x: x.network_id == network_id, instance.ports.all())[0]
             fields[data['name']] = port.ip
+
+        fields["SPGWC_IP_LIST"] = self.get_spgwc_list()
 
         return fields
 

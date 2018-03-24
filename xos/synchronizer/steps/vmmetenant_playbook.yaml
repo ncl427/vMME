@@ -21,7 +21,10 @@
   vars:
     - MME_PRIVATE_IP: "{{ MME_PRIVATE_IP }}"
     - HSS_PRIVATE_IP: "10.0.7.1"
-    - SPGW_PRIVATE_IP: "10.0.8.1"
+    - SPGWC_PRIVATE_IP_LIST:
+    {% for item in SPGWC_IP_LIST %}
+      - "{{ item }}"
+    {% endfor %}
   roles:
     - pre-requirement
     - mme-configure
