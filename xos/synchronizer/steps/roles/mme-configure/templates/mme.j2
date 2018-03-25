@@ -218,7 +218,7 @@ MME :
     
     S-GW_LIST_SELECTION = (
         {% for SPGWC_PRIVATE_IP in SPGWC_PRIVATE_IP_LIST %}
-         {ID="tac-lb{{'%02x' % loop.index}}.tac-hb00.tac.epc.mnc{{'%03x' % MNC}}.mcc{{'%03x' % MCC}}.3gppnetwork.org" ; SGW_IPV4_ADDRESS_FOR_S11="{{SPGWC_PRIVATE_IP}}/24";}{{ "," if not loop.last }}
+         {ID="tac-lb{{'%02x' % loop.index}}.tac-hb00.tac.epc.mnc{{'%03x' % MNC}}.mcc{{'%03x' % MCC}}.3gppnetwork.org" ; SGW_IPV4_ADDRESS_FOR_S11="{{SPGWC_PRIVATE_IP}}/24";}{{ "," if not loop.last else "" }}
         {% endfor %}
     );
 
