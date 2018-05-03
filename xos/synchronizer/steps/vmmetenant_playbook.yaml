@@ -13,15 +13,18 @@
 # limitations under the License.
 
 ---
-- hosts: {{ instance_name }} 
-  gather_facts: False 
-  connection: ssh 
-  user: ubuntu 
-  sudo: yes 
+- hosts: {{ instance_name }}
+  gather_facts: False
+  connection: ssh
+  user: ubuntu
+  sudo: yes
   vars:
-    - MME_PRIVATE_IP: "{{ MME_PRIVATE_IP }}"
-    - HSS_PRIVATE_IP: "10.0.7.1"
-    - SPGW_PRIVATE_IP: "10.0.8.1"
+    - MME_S11_IP: {{ mme_s11_ip }}
+    - MME_S1MME_IP: {{ mme_s1mme_ip }}
+    - MME_S6A_IP: {{ mme_s6a_ip }}
+    - SPGW_S11_IP: {{ spgw_s11_ip }}
+    - HSS_S6A_IP: {{ hss_s6a_ip }}
   roles:
-    - pre-requirement
     - mme-configure
+    - setup-service
+
