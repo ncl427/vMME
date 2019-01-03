@@ -1,4 +1,4 @@
-option name = "vmme";
+option name = "vMME";
 option app_label = "vmme";
 
 message VMMEService (Service){

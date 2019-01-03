@@ -20,7 +20,6 @@
   sudo: yes 
   vars:
     - MME_PRIVATE_IP: "{{ MME_PRIVATE_IP }}"
-    - NSSF_PRIVATE_IP: "{{ NSSF_PRIVATE_IP }}"
     - HSS_PRIVATE_IP: "10.0.7.2"
     - SPGWC_PRIVATE_IP_LIST:
     {% for item in SPGWC_IP_LIST %}
