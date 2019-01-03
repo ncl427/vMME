@@ -19,7 +19,7 @@
     - { src: 'acl.j2', dest: '/usr/local/etc/oai/freeDiameter/acl.conf' }
     - { src: 'mme_fd.j2', dest: '/usr/local/etc/oai/freeDiameter/mme_fd.conf' }
     - { src: 'mme.j2', dest: '/usr/local/etc/oai/mme.conf' }
-    - { src: 'pyapi.j2', dest: '~/pyapi.py' }
+    - { src: 'pyapi.j2', dest: '/home/ubuntu/openair-cn/SCRIPTS/pyapi.py' }
 
 - name: set hosts
   lineinfile:
