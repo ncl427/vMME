@@ -66,8 +66,7 @@ class SyncVMMETenant(SyncInstanceUsingAnsible):
         fields = {}
 
         collect_network = [
-           {'name': 'MME_PRIVATE_IP', 'net_name': 'vmme_network'}
-           {'name': 'NSSF_PRIVATE_IP', 'net_name': 'nssf_network'}
+           {'name': 'MME_PRIVATE_IP', 'net_name': 'vmme_network'}        
         ]
 
         instance = self.get_instance_object(o.instance_id)
